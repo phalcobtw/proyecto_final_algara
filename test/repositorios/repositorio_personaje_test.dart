@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:proyecto_final/repositorios/repositorio_hechizos.dart';
 import 'package:proyecto_final/repositorios/repositorio_personaje.dart';
 
 void main() {
@@ -93,6 +94,13 @@ void main() {
       final resultado = repositorio.obtenerPersonaje(objeto);
       resultado.match((l) => null, (r) {
         expect(r.first.imagenurl, equals("https://hp-api.herokuapp.com/images/ron.jpg"));
+      });
+    });
+    test('actor de draco obtenido', () {
+      RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
+      final resultado = repositorio.obtenerPersonaje(objeto);
+      resultado.match((l) => null, (r) {
+        expect(r.toList()[1].actorNombre, equals("Tom Felton"));
       });
     });
   });
