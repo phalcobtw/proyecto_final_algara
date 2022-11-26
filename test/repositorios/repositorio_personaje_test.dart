@@ -53,15 +53,27 @@ void main() {
     }
    ]""";
 
-   JsonDecoder decoder = const JsonDecoder();
-   final objeto = decoder.convert(jsonRecortado);
-   group('TEST DE PERSONAJES Y COSAS NO SE xd', () {
-     test('TEST OBTENER PERSONAJE DRACO', () {
-    RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
-    final resultado = repositorio.obtenerPersonaje(objeto);
-    resultado.match((l) => null, (r) {
-      expect(r.last.nombre, equals("Draco Malfoy"));
+  JsonDecoder decoder = const JsonDecoder();
+  final objeto = decoder.convert(jsonRecortado);
+  group('TEST DE PERSONAJES Y COSAS NO SE xd', () {
+    test('TEST OBTENER PERSONAJE DRACO', () {
+      RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
+      final resultado = repositorio.obtenerPersonaje(objeto);
+      resultado.match((l) => null, (r) {
+        expect(r.last.nombre, equals("Draco Malfoy"));
+      });
+    });
+    test('TEST OBTENER PERSONAJE RON', () {
+      RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
+      final resultado = repositorio.obtenerPersonaje(objeto);
+      resultado.match((l) => null, (r) {
+        expect(r.first.nombre, equals("Ron Weasley"));
+      });
+    });
+    test('Se llena el set con la info', () {
+      RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
+      final resultado = repositorio.obtenerPersonaje(objeto);
+      expect(resultado.isRight(), true);
     });
   });
-   });
 }
