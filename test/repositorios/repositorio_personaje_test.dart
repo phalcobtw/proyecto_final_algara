@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:proyecto_final/repositorios/repositorio_personaje.dart';
 
 void main() {
@@ -85,6 +86,13 @@ void main() {
       final resultado = repositorio.obtenerInfoWands(objeto);
       resultado.match((l) => null, (r) {
         expect(r.length, equals(2));
+      });
+    });
+    test('saco link de imagen', () {
+      RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
+      final resultado = repositorio.obtenerPersonaje(objeto);
+      resultado.match((l) => null, (r) {
+        expect(r.first.imagenurl, equals("https://hp-api.herokuapp.com/images/ron.jpg"));
       });
     });
   });
