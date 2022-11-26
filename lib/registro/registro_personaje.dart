@@ -8,6 +8,7 @@ class Personaje{
   final String colorDeOjos;
   final String colorDeCabello;
   final String patronus;
+  final dynamic wand;
   final String actorNombre;
   final String imagenurl;
 
@@ -17,10 +18,11 @@ class Personaje{
     String genero = jsonElement["gender"] ?? "";
     String casa = jsonElement["house"] ?? "";
     String fechaNacimiento = jsonElement["dateOfBirth"] ?? "";
-    int anioNacimiento = jsonElement["yearOfBirth"] ?? "";
+    int anioNacimiento = jsonElement["yearOfBirth"] ?? 0;
     String colorDeOjos = jsonElement["eyeColour"] ?? "";
     String colorDeCabello = jsonElement["hairColour"] ?? "";
     String patronus = jsonElement["patronus"] ?? "";
+    dynamic wand = jsonElement["wand"] ?? "";
     String actorNombre = jsonElement["actor"] ?? "";
     String imagenurl = jsonElement["image"] ?? "";
     
@@ -33,6 +35,7 @@ class Personaje{
     colorDeOjos,
     colorDeCabello,
     patronus,
+    wand,
     actorNombre,
     imagenurl);
   }
@@ -45,6 +48,7 @@ class Personaje{
   this.colorDeOjos,
   this.colorDeCabello,
   this.patronus,
+  this.wand,
   this.actorNombre,
   this.imagenurl);
 }
