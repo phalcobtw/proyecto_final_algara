@@ -55,7 +55,7 @@ void main() {
 
   JsonDecoder decoder = const JsonDecoder();
   final objeto = decoder.convert(jsonRecortado);
-  group('TEST DE PERSONAJES Y COSAS NO SE xd', () {
+  group('TEST DE PERSONAJES Y WANDS DE PESRSONAJES', () {
     test('TEST OBTENER PERSONAJE DRACO', () {
       RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
       final resultado = repositorio.obtenerPersonaje(objeto);
@@ -74,6 +74,18 @@ void main() {
       RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
       final resultado = repositorio.obtenerPersonaje(objeto);
       expect(resultado.isRight(), true);
+    });
+    test('obtengo info de varas', () {
+      RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
+      final resultado = repositorio.obtenerInfoWands(objeto);
+      expect(resultado.isRight(), true);
+    });
+    test('existe varita en el personaje de ambos', () {
+      RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
+      final resultado = repositorio.obtenerInfoWands(objeto);
+      resultado.match((l) => null, (r) {
+        expect(r.length, equals(2));
+      });
     });
   });
 }
