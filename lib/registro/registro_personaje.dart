@@ -8,6 +8,10 @@ class Personaje{
   final String colorDeOjos;
   final String colorDeCabello;
   final String patronus;
+  final bool student;
+  final bool staff;
+  final bool wizard;
+  final bool tavivo;
   final dynamic wand;
   final String actorNombre;
   final String imagenurl;
@@ -22,6 +26,10 @@ class Personaje{
     String colorDeOjos = jsonElement["eyeColour"] ?? "";
     String colorDeCabello = jsonElement["hairColour"] ?? "";
     String patronus = jsonElement["patronus"] ?? "";
+    bool student = jsonElement["hogwartsStudent"] ?? false;
+    bool staff = jsonElement["hogwartsStaff"] ?? false;
+    bool wizard = jsonElement["wizard"] ?? false;
+    bool tavivo = jsonElement["alive"] ?? false;
     dynamic wand = jsonElement["wand"] ?? "";
     String actorNombre = jsonElement["actor"] ?? "";
     String imagenurl = jsonElement["image"] ?? "";
@@ -35,6 +43,10 @@ class Personaje{
     colorDeOjos,
     colorDeCabello,
     patronus,
+    student,
+    staff,
+    wizard,
+    tavivo,
     wand,
     actorNombre,
     imagenurl);
@@ -48,6 +60,10 @@ class Personaje{
   this.colorDeOjos,
   this.colorDeCabello,
   this.patronus,
+  this.student,
+  this.staff,
+  this.wizard,
+  this.tavivo,
   this.wand,
   this.actorNombre,
   this.imagenurl);
