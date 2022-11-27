@@ -77,18 +77,18 @@ void main() {
       final resultado = repositorio.obtenerPersonaje(objeto);
       expect(resultado.isRight(), true);
     });
-    test('obtengo info de varas', () {
+    /* test('obtengo info de varas', () {
       RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
       final resultado = repositorio.obtenerInfoWands(objeto);
       expect(resultado.isRight(), true);
-    });
-    test('existe varita en el personaje de ambos', () {
+    }); */
+    /* test('existe varita en el personaje de ambos', () {
       RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
       final resultado = repositorio.obtenerInfoWands(objeto);
       resultado.match((l) => null, (r) {
         expect(r.length, equals(2));
       });
-    });
+    }); */
     test('saco link de imagen', () {
       RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
       final resultado = repositorio.obtenerPersonaje(objeto);

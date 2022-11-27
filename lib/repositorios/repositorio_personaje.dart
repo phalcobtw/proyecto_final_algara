@@ -1,11 +1,11 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:proyecto_final/problemas.dart';
 import 'package:proyecto_final/registro/registro_personaje.dart';
-import 'package:proyecto_final/registro/registro_wand.dart';
+/* import 'package:proyecto_final/registro/registro_wand.dart'; */
 
 abstract class RepositorioPersonaje{
   Either<Problemas, Set<Personaje>> obtenerPersonaje(dynamic jsonDePersonajes);
-  Either<Problemas, Set<Wand>> obtenerInfoWands(dynamic jsonDePersonajes);
+  /* Either<Problemas, Set<Wand>> obtenerInfoWands(dynamic jsonDePersonajes); */
 }
 
 class RepositorioPersonajePruebas extends RepositorioPersonaje{
@@ -22,7 +22,7 @@ class RepositorioPersonajePruebas extends RepositorioPersonaje{
     }
   }
   
-  @override
+/*   @override
   Either<Problemas, Set<Wand>> obtenerInfoWands(jsonDePersonajes) {
     try {
       Set<Wand> setWands = {};
@@ -35,5 +35,5 @@ class RepositorioPersonajePruebas extends RepositorioPersonaje{
     } catch (e) {
       return Left(VersionDeJsonInvalida());
     }
-  }
+  } */
 }
