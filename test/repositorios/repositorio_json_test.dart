@@ -32,5 +32,10 @@ void main() {
       final cursor = resultado.getOrElse((l) => null);
       expect(cursor[1]["description"], equals("Summons objects"));
     });
+    test('checo si el personaje ta vivo', () async {
+      final resultado = await repoJson.obtenerJSONPersonaje();
+      final cursor = resultado.getOrElse((l) => null);
+      expect(cursor[1]["alive"], true);
+    });
   });
 }
