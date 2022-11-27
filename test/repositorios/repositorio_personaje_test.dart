@@ -103,5 +103,12 @@ void main() {
         expect(r.toList()[1].actorNombre, equals("Tom Felton"));
       });
     });
+    test('checo si draco ta vivo o muelto', () {
+      RepositorioPersonaje repositorio = RepositorioPersonajePruebas();
+      final resultado = repositorio.obtenerPersonaje(objeto);
+      resultado.match((l) => null, (r) {
+        expect(r.toList()[1].tavivo, true);
+      });
+    });
   });
 }
