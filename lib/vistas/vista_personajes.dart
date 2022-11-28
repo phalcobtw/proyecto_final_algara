@@ -25,7 +25,7 @@ class VistaListaPersonajes extends StatelessWidget {
         FloatingActionButton(onPressed: (){
           var bloc = context.read<ClaseBloc>();
           bloc.add(Creado());
-        },child: const Text('Regresr'),
+        },child: const Text('Regresar'),
         )
       ],
     );
