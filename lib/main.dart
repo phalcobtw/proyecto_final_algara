@@ -10,6 +10,7 @@ import 'clases.dart';
 void main() {
   runApp(const AplicacionInyectada());
 }
+//flutter run -d chrome --web-renderer html
 
 class AplicacionInyectada extends StatelessWidget {
   const AplicacionInyectada({Key? key}) : super(key: key);
