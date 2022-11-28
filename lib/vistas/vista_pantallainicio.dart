@@ -53,7 +53,10 @@ class _VistaPantallaInicioState extends State<VistaPantallaInicio> {
             Container(
               width: 200,
               height: 35,
-              child: ElevatedButton(onPressed: () {}, child: Text('Ver Hechizos')),
+              child: ElevatedButton(onPressed: () {
+                var bloc = context.read<ClaseBloc>();
+                bloc.add(CargarHechizos());
+              }, child: Text('Ver Hechizos')),
             ),
             SizedBox(height: 75),
             SizedBox(height: 30,child: Text('VER LISTA FILTRADA',style: const TextStyle(fontWeight: FontWeight.bold),),),
