@@ -26,6 +26,19 @@ class CargarInfoCasa extends EventoVerificacion{
   CargarInfoCasa(this.nombreCasa);
 }
 
+class CargarPersonajeFiltrado extends EventoVerificacion{
+  final String nombrePersonaje;
+
+  CargarPersonajeFiltrado(this.nombrePersonaje);
+
+}
+
+class CargarHechizoFiltrado extends EventoVerificacion{
+  final String hechizoAFiltrar;
+
+  CargarHechizoFiltrado(this.hechizoAFiltrar);
+}
+
 
 //Estados
 class EstadoVerificacion{}
@@ -92,6 +105,24 @@ class ClaseBloc extends Bloc<EventoVerificacion, EstadoVerificacion> {
       }, (r) {
         Iterable<Personaje> listaEstudiantes = r.where((personaje) => personaje.student == true);
         emit(MostrarPersonajes(setPersonajes: listaEstudiantes.toSet()));
+      });
+    });
+    on<CargarPersonajeFiltrado>((event, emit) {
+      Either<Problemas,Set<Personaje>> setPersonajes = repoPersonajes.obtenerPersonaje(respuestaPersonajes);
+      setPersonajes.match((l) {
+        emit(MostrarVistaError());
+      }, (r) {
+        Iterable<Personaje> listaEstudiantes = r.where((personaje) => personaje.nombre == event.nombrePersonaje);
+        emit(MostrarPersonajes(setPersonajes: listaEstudiantes.toSet()));
+      });
+    });
+    on<CargarHechizoFiltrado>((event, emit) {
+      Either<Problemas,Set<Hechizos>> setHechizos = repoSpells.obtenerHechizos(respuestaSpells);
+      setHechizos.match((l) {
+        emit(MostrarVistaError());
+      }, (r) {
+        Iterable<Hechizos> listaHechizos = r.where((hechizo) => hechizo.nombre == event.hechizoAFiltrar);
+        emit(MostrarHechizos(setHechizos: listaHechizos.toSet()));
       });
     });
     on<CargarProfesores>((event, emit) {
