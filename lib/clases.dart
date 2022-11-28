@@ -87,21 +87,27 @@ class ClaseBloc extends Bloc<EventoVerificacion, EstadoVerificacion> {
     });
     on<CargarEstudiantes>((event, emit) {
       Either<Problemas,Set<Personaje>> setPersonajes = repoPersonajes.obtenerPersonaje(respuestaPersonajes);
-      setPersonajes.match((l) => null, (r) {
+      setPersonajes.match((l) {
+        emit(MostrarVistaError());
+      }, (r) {
         Iterable<Personaje> listaEstudiantes = r.where((personaje) => personaje.student == true);
         emit(MostrarPersonajes(setPersonajes: listaEstudiantes.toSet()));
       });
     });
     on<CargarProfesores>((event, emit) {
       Either<Problemas,Set<Personaje>> setPersonajes = repoPersonajes.obtenerPersonaje(respuestaPersonajes);
-      setPersonajes.match((l) => null, (r) {
+      setPersonajes.match((l) {
+        emit(MostrarVistaError());
+      }, (r) {
         Iterable<Personaje> listaProfesores = r.where((personaje) => personaje.staff == true);
         emit(MostrarPersonajes(setPersonajes: listaProfesores.toSet()));
       });
     });
     on<CargarInfoCasa>((event, emit) {
       Either<Problemas, Set<Personaje>> setPersonajes = repoPersonajes.obtenerPersonaje(respuestaPersonajes);
-      setPersonajes.match((l) => null, (r) {
+      setPersonajes.match((l) {
+        emit(MostrarVistaError());
+      }, (r) {
         Iterable<Personaje> listaPersonajesCasa = r.where((personaje) => personaje.casa == event.nombreCasa);
         emit(MostrarPersonajes(setPersonajes: listaPersonajesCasa.toSet()));
       });
