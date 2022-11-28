@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../clases.dart';
 
@@ -43,7 +44,10 @@ class _VistaPantallaInicioState extends State<VistaPantallaInicio> {
             Container(
               width: 200,
               height: 35,
-              child: ElevatedButton(onPressed: () {}, child: Text('Ver Personajes')),
+              child: ElevatedButton(onPressed: () {
+                var bloc = context.read<ClaseBloc>();
+                bloc.add(CargarPersonajes());
+              }, child: Text('Ver Personajes')),
             ),
             SizedBox(height: 15),
             Container(
