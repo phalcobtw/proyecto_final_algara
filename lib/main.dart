@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto_final/vistas/vista_creandose.dart';
 import 'package:proyecto_final/vistas/vista_error.dart';
+import 'package:proyecto_final/vistas/vista_hechizos.dart';
 import 'package:proyecto_final/vistas/vista_pantallainicio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final/vistas/vista_personajes.dart';
@@ -49,6 +50,9 @@ class Aplicacion extends StatelessWidget {
           }
           if (estado is MostrarVistaError) {
             return VistaError();
+          }
+          if (estado is MostrarHechizos) {
+            return VistaHechizos(setHechizos: estado.setHechizos);
           }
           return const Center(child: Text('Si estas viendo esto algo salio mal, HUYE'));
 
