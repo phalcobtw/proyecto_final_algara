@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proyecto_final/vistas/vista_creandose.dart';
 import 'package:proyecto_final/vistas/vista_pantallainicio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proyecto_final/vistas/vista_personajes.dart';
 import 'clases.dart';
 
 void main() {
@@ -41,6 +42,9 @@ class Aplicacion extends StatelessWidget {
           }
           if (estado is PantallaInicio) {
             return VistaPantallaInicio();
+          }
+          if (estado is MostrarPersonajes) {
+            return VistaListaPersonajes(setPersonaje: estado.setPersonajes);
           }
           return const Center(child: Text('Si estas viendo esto algo salio mal, HUYE'));
 
