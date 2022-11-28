@@ -24,12 +24,12 @@ class _VistaPantallaInicioState extends State<VistaPantallaInicio> {
     controller = TextEditingController();
     controllerHechizos = TextEditingController();
     controllerHechizos.addListener(() { 
-      final isButtonActiveHechizos = controllerHechizos.text.isNotEmpty;
+      final isButtonActiveHechizos = controllerHechizos.text.trim().isNotEmpty;
 
       setState(() => this.isButtonActiveHechizos = isButtonActiveHechizos);
     });
     controller.addListener(() {
-      final isButtonActive = controller.text.isNotEmpty;
+      final isButtonActive = controller.text.trim().isNotEmpty;
 
       setState(() => this.isButtonActive = isButtonActive);
     });
