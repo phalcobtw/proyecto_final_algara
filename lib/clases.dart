@@ -44,6 +44,8 @@ class MostrarHechizos extends EstadoVerificacion{
   MostrarHechizos({required this.setHechizos});
 }
 
+class MostrarVistaError extends EstadoVerificacion{}
+
 /* class MostrarProfesores extends EstadoVerificacion{}
 
 class MostrarEstudiantes extends EstadoVerificacion{} */
@@ -53,19 +55,25 @@ class MostrarInfoCasa extends EstadoVerificacion{}
 
 class ClaseBloc extends Bloc<EventoVerificacion, EstadoVerificacion> {
   RepositorioPersonaje repoPersonajes = RepositorioPersonajePruebas();
+  RepositorioHechizos repoSpells = RepositorioHechizosPruebas();
   RepositorioJson repoJson = RepositorioJsonOnline();
+  late Either<Problemas, dynamic> jsonPersonajes;
+  late Either<Problemas, dynamic> jsonSpells;
   late dynamic respuestaPersonajes;
   late dynamic respuestaSpells;
-  RepositorioHechizos repoSpells = RepositorioHechizosPruebas();
   ClaseBloc() : super(Creandose()) {
     on<Creado>((event, emit) async {
-      respuestaPersonajes = await repoJson.obtenerJSONPersonaje();
+      jsonPersonajes = await repoJson.obtenerJSONPersonaje();
+      respuestaPersonajes = jsonPersonajes.getOrElse((l) => emit(MostrarVistaError()));
+      respuestaSpells = jsonSpells.getOrElse((l) => emit(MostrarVistaError()));
       respuestaSpells = await repoJson.obtenerJSONSpells();
       emit(PantallaInicio());
     });
     on<CargarPersonajes>((event, emit) {
       Either<Problemas, Set<Personaje>> setPersonajes = repoPersonajes.obtenerPersonaje(respuestaPersonajes);
-      setPersonajes.match((l) => null, (r) {
+      setPersonajes.match((l) {
+        emit(MostrarVistaError());
+      }, (r) {
         emit(MostrarPersonajes(setPersonajes: r));
       });
     });
