@@ -63,38 +63,56 @@ class _VistaPantallaInicioState extends State<VistaPantallaInicio> {
             Container(
               width: 200,
               height: 35,
-              child: ElevatedButton(onPressed: (){}, child: Text('Ver Estudiantes')),
+              child: ElevatedButton(onPressed: (){
+                var bloc = context.read<ClaseBloc>();
+                bloc.add(CargarEstudiantes());
+              }, child: Text('Ver Estudiantes')),
             ),
             SizedBox(height: 15),
             Container(
               width: 200,
               height: 35,
-              child: ElevatedButton(onPressed: (){}, child: Text('Ver Profesores')),
+              child: ElevatedButton(onPressed: (){
+                var bloc = context.read<ClaseBloc>();
+                bloc.add(CargarProfesores());
+              }, child: Text('Ver Profesores')),
             ),
             SizedBox(height: 75),
             SizedBox(height: 30,child: Text('VER ESCUELAS/CASAS',style: const TextStyle(fontWeight: FontWeight.bold),),),
             Container(
               width: 200,
               height: 35,
-              child: ElevatedButton(onPressed: (){}, child: Text('Gryffindor')),
+              child: ElevatedButton(onPressed: (){
+                var bloc = context.read<ClaseBloc>();
+                bloc.add(CargarInfoCasa("Gryffindor"));
+              }, child: Text('Gryffindor')),
             ),
             SizedBox(height: 15),
             Container(
               width: 200,
               height: 35,
-              child: ElevatedButton(onPressed: (){}, child: Text('Hufflepuff')),
+              child: ElevatedButton(onPressed: (){
+                var bloc = context.read<ClaseBloc>();
+                bloc.add(CargarInfoCasa("Hufflepuff"));
+              }, child: Text('Hufflepuff')),
             ),
             SizedBox(height: 15),
             Container(
               width: 200,
               height: 35,
-              child: ElevatedButton(onPressed: (){}, child: Text('Ravenclaw')),
+              child: ElevatedButton(onPressed: (){
+                var bloc = context.read<ClaseBloc>();
+                bloc.add(CargarInfoCasa("Ravenclaw"));
+              }, child: Text('Ravenclaw')),
             ),
             SizedBox(height: 15),
             Container(
               width: 200,
               height: 35,
-              child: ElevatedButton(onPressed: (){}, child: Text('Slytherin')),
+              child: ElevatedButton(onPressed: (){
+                var bloc = context.read<ClaseBloc>();
+                bloc.add(CargarInfoCasa("Slytherin"));
+              }, child: Text('Slytherin')),
             ),
             SizedBox(height: 15),
           ],
