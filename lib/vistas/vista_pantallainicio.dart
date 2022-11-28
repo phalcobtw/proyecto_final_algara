@@ -15,11 +15,19 @@ class VistaPantallaInicio extends StatefulWidget {
 
 class _VistaPantallaInicioState extends State<VistaPantallaInicio> {
   bool isButtonActive = false;
+  bool isButtonActiveHechizos = false;
   late TextEditingController controller;
+  late TextEditingController controllerHechizos;
   @override
   void initState() {
     super.initState();
     controller = TextEditingController();
+    controllerHechizos = TextEditingController();
+    controllerHechizos.addListener(() { 
+      final isButtonActiveHechizos = controllerHechizos.text.isNotEmpty;
+
+      setState(() => this.isButtonActiveHechizos = isButtonActiveHechizos);
+    });
     controller.addListener(() {
       final isButtonActive = controller.text.isNotEmpty;
 
@@ -40,6 +48,30 @@ class _VistaPantallaInicioState extends State<VistaPantallaInicio> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(child: Text('BUSCAR PERSONAJE POR NOMBRE',style: const TextStyle(fontWeight: FontWeight.bold),),height: 30,),
+            Container(
+              width: 200,
+              height: 35,
+              child: TextField(controller: controller),      
+            ),
+            TextButton(onPressed: isButtonActive ? (){
+              setState(() => isButtonActive = false);
+              var bloc = context.read<ClaseBloc>();
+              bloc.add(CargarPersonajeFiltrado(controller.text));
+            }:null, child: Text("Buscar")),
+            SizedBox(height: 15),
+            SizedBox(child: Text('BUSCAR HECHIZO POR NOMBRE',style: const TextStyle(fontWeight: FontWeight.bold),),height: 30,),
+            Container(
+              width: 200,
+              height: 35,
+              child: TextField(controller: controllerHechizos),      
+            ),
+            TextButton(onPressed: isButtonActiveHechizos ? (){
+              setState(() => isButtonActive = false);
+              var bloc = context.read<ClaseBloc>();
+              bloc.add(CargarHechizoFiltrado(controllerHechizos.text));
+            }:null, child: Text("Buscar")),
+            SizedBox(height: 15),
             SizedBox(child: Text('VER LISTA COMPLETA SIN FILTRAR',style: const TextStyle(fontWeight: FontWeight.bold),),height: 30,),
             Container(
               width: 200,
