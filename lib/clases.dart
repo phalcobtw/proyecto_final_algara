@@ -65,8 +65,8 @@ class ClaseBloc extends Bloc<EventoVerificacion, EstadoVerificacion> {
     on<Creado>((event, emit) async {
       jsonPersonajes = await repoJson.obtenerJSONPersonaje();
       respuestaPersonajes = jsonPersonajes.getOrElse((l) => emit(MostrarVistaError()));
+      jsonSpells = await repoJson.obtenerJSONSpells();
       respuestaSpells = jsonSpells.getOrElse((l) => emit(MostrarVistaError()));
-      respuestaSpells = await repoJson.obtenerJSONSpells();
       emit(PantallaInicio());
     });
     on<CargarPersonajes>((event, emit) {
@@ -79,7 +79,9 @@ class ClaseBloc extends Bloc<EventoVerificacion, EstadoVerificacion> {
     });
     on<CargarHechizos>((event, emit) {
       Either<Problemas, Set<Hechizos>> setHechizos = repoSpells.obtenerHechizos(respuestaSpells);
-      setHechizos.match((l) => null, (r) {
+      setHechizos.match((l) {
+        emit(MostrarVistaError());
+      }, (r) {
         emit(MostrarHechizos(setHechizos: r));
       });
     });
