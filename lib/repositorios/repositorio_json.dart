@@ -14,7 +14,7 @@ class RepositorioJsonOnline extends RepositorioJson{
   @override
   Future<Either<Problemas, dynamic>> obtenerJSONPersonaje() async {
     try {
-      final respuesta = await http.get(Uri.parse('https://hp-api.herokuapp.com/api/characters'));
+      final respuesta = await http.get(Uri.parse('https://hp-api.onrender.com/api/characters'));
       String docJsonPersonajes = respuesta.body;
       JsonDecoder decoder = const JsonDecoder();
       final objeto = decoder.convert(docJsonPersonajes);
@@ -27,7 +27,7 @@ class RepositorioJsonOnline extends RepositorioJson{
   @override
   Future<Either<Problemas, dynamic>> obtenerJSONSpells() async{
     try {
-      final respuesta = await http.get(Uri.parse('https://hp-api.herokuapp.com/api/spells'));
+      final respuesta = await http.get(Uri.parse('https://hp-api.onrender.com/api/spells'));
       String docJsonSpells = respuesta.body;
       JsonDecoder decoder = const JsonDecoder();
       final objeto = decoder.convert(docJsonSpells);
